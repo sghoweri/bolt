@@ -22,8 +22,8 @@ patternStates:
     # - 04-pages
     # - viewall-pages-all
 cacheBusterOn: 'true'
-publicDir: ../www/pattern-lab/
-sourceDir: src/pages/pattern-lab/
+publicDir: www/pattern-lab/
+sourceDir: docs-site/src/pages/pattern-lab/
 defaultPattern: components-overview
 defaultShowPatternInfo: false
 ishMinimum: '240'
@@ -73,7 +73,7 @@ extensions:
 plugins:
   twigNamespaces:
     enabled: true
-    readFromFile: ../www/build/data/twig-namespaces.bolt.json
+    readFromFile: www/build/data/twig-namespaces.bolt.json
 # @todo: remove once we move to Pattern Lab Node + move this config into our patternlab.config.json
 theme:
   logo:

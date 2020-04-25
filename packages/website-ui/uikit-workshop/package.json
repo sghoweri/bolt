@@ -20,7 +20,8 @@
     "webpack.config.js"
   ],
   "scripts": {
-    "build": "webpack-cli --config webpack.config.js --display=minimal && RESULT=$( inline-critical -c ../../../www/pattern-lab/styleguide/css/pattern-lab.css  -h ../../../www/pattern-lab/index.html) && echo $RESULT > ../../../www/pattern-lab/index.html",
+    "_build": "webpack-cli --config webpack.config.js --display=minimal && RESULT=$( inline-critical -c ../../../www/pattern-lab/styleguide/css/pattern-lab.css  -h ../../../www/pattern-lab/index.html) && echo $RESULT > ../../../www/pattern-lab/index.html",
+    "build": "webpack-cli --config webpack.config.js --display=minimal",
     "prepublish": "npm run build",
     "start": "node ./build-tools.js",
     "watch": "webpack-cli --config webpack.config.js --progress --watch --display=minimal"

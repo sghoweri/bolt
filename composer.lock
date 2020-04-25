@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "96a0d15ea606fcdef2e94ff9a5fbec1f",
+    "content-hash": "a95273b40ab3fe9582125f208caf464b",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -165,12 +165,11 @@
         },
         {
             "name": "bolt-design-system/core-php",
-            "version": "2.20.1",
+            "version": "2.22.1",
             "dist": {
                 "type": "path",
-                "url": "../packages/twig-integration/twig-extensions-shared",
-                "reference": "2e6c3ad00892d403575b6012c46fc20a96ff0d55",
-                "shasum": null
+                "url": "packages/twig-integration/twig-extensions-shared",
+                "reference": "38a127e08817f71f2dd3652300a77294c269492e"
             },
             "require": {
                 "asm89/twig-lint": "^1.0",
@@ -224,9 +223,8 @@
             "version": "2.20.0",
             "dist": {
                 "type": "path",
-                "url": "../packages/twig-integration/twig-extensions-compat",
-                "reference": "82abac38d04f72d0814c66c01aed8a6cb29b42ca",
-                "shasum": null
+                "url": "packages/twig-integration/twig-extensions-compat",
+                "reference": "82abac38d04f72d0814c66c01aed8a6cb29b42ca"
             },
             "require": {
                 "drupal/core-render": "^8.0.0",
@@ -262,9 +260,8 @@
             "version": "2.4.0",
             "dist": {
                 "type": "path",
-                "url": "../packages/website-ui/styleguidekit-twig-default",
-                "reference": "cc4cd4351d2aa7dabfee0bcd1027e778888dde58",
-                "shasum": null
+                "url": "packages/website-ui/styleguidekit-twig-default",
+                "reference": "cc4cd4351d2aa7dabfee0bcd1027e778888dde58"
             },
             "type": "patternlab-styleguidekit",
             "license": [
@@ -284,9 +281,8 @@
             "version": "2.20.0",
             "dist": {
                 "type": "path",
-                "url": "../packages/twig-integration/twig-renderer",
-                "reference": "234598fba82daf1e242ec99577fb8c6b5ba35001",
-                "shasum": null
+                "url": "packages/twig-integration/twig-renderer",
+                "reference": "234598fba82daf1e242ec99577fb8c6b5ba35001"
             },
             "require": {
                 "bolt-design-system/core-php": "*",
@@ -479,7 +475,7 @@
         },
         {
             "name": "drupal/core-render",
-            "version": "8.8.4",
+            "version": "8.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-render.git",
@@ -514,7 +510,7 @@
         },
         {
             "name": "drupal/core-utility",
-            "version": "8.8.4",
+            "version": "8.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-utility.git",
@@ -697,17 +693,17 @@
         },
         {
             "name": "gregwar/image",
-            "version": "v2.0.25",
+            "version": "v2.0.28",
             "target-dir": "Gregwar/Image",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gregwar/Image.git",
-                "reference": "03534d5760cbea5c96e6292041ff81a3bb205c36"
+                "reference": "68b4eddc45dacb3532e0fa16e5cb7d3937424a0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gregwar/Image/zipball/03534d5760cbea5c96e6292041ff81a3bb205c36",
-                "reference": "03534d5760cbea5c96e6292041ff81a3bb205c36",
+                "url": "https://api.github.com/repos/Gregwar/Image/zipball/68b4eddc45dacb3532e0fa16e5cb7d3937424a0c",
+                "reference": "68b4eddc45dacb3532e0fa16e5cb7d3937424a0c",
                 "shasum": ""
             },
             "require": {
@@ -745,7 +741,7 @@
                 "gd",
                 "image"
             ],
-            "time": "2019-03-01T15:55:29+00:00"
+            "time": "2020-03-31T17:33:39+00:00"
         },
         {
             "name": "hyn/frontmatter",
@@ -1404,16 +1400,16 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.4.6",
+            "version": "v4.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "f0ae2b4150254b8b4ac578f33d910b9c116618f0"
+                "reference": "346636d2cae417992ecfd761979b2ab98b339a45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/f0ae2b4150254b8b4ac578f33d910b9c116618f0",
-                "reference": "f0ae2b4150254b8b4ac578f33d910b9c116618f0",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/346636d2cae417992ecfd761979b2ab98b339a45",
+                "reference": "346636d2cae417992ecfd761979b2ab98b339a45",
                 "shasum": ""
             },
             "require": {
@@ -1456,7 +1452,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2020-03-23T12:37:11+00:00"
+            "time": "2020-03-27T16:54:36+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1963,16 +1959,16 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.7.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "aed98a490f9a8f78468232db345ab9cf606cf598"
+                "reference": "ab2cb0b3b559010b75981b1bdce728da3ee90ad6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/aed98a490f9a8f78468232db345ab9cf606cf598",
-                "reference": "aed98a490f9a8f78468232db345ab9cf606cf598",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/ab2cb0b3b559010b75981b1bdce728da3ee90ad6",
+                "reference": "ab2cb0b3b559010b75981b1bdce728da3ee90ad6",
                 "shasum": ""
             },
             "require": {
@@ -1980,7 +1976,7 @@
                 "symfony/polyfill-ctype": "^1.8"
             },
             "conflict": {
-                "vimeo/psalm": "<3.6.0"
+                "vimeo/psalm": "<3.9.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8.36 || ^7.5.13"
@@ -2007,7 +2003,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2020-02-14T12:15:55+00:00"
+            "time": "2020-04-18T12:12:48+00:00"
         },
         {
             "name": "webmozart/path-util",

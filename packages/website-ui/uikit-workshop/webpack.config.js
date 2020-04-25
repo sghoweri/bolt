@@ -13,7 +13,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const PrerenderSPAPlugin = require('@bolt/prerender-spa-plugin');
 const path = require('path');
 const Renderer = require('@bolt/uikit-prerenderer');
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
 const argv = require('yargs').argv;
 const merge = require('webpack-merge');
 const WebpackBar = require('webpackbar');
@@ -365,28 +365,28 @@ module.exports = function(apiConfig) {
             beforeEmit: false,
           }
         ),
-        new PrerenderSPAPlugin({
-          // Required - The path to the webpack-outputted app to prerender.
-          // staticDir: path.join(__dirname, 'dist'),
-          staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
-          // Required - Routes to render.
-          routes: ['/'],
-          postProcess(context) {
-            context.html = context.html.replace(
-              /<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi,
-              '',
-            );
-            return context;
-          },
-          renderer: new Renderer({
-            // Optional - The name of the property to add to the window object with the contents of `inject`.
-            injectProperty: '__PRERENDER_INJECTED',
-            // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
-            inject: {
-              foo: 'bar',
-            },
-          }),
-        }),
+        // new PrerenderSPAPlugin({
+        //   // Required - The path to the webpack-outputted app to prerender.
+        //   // staticDir: path.join(__dirname, 'dist'),
+        //   staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
+        //   // Required - Routes to render.
+        //   routes: ['/'],
+        //   postProcess(context) {
+        //     context.html = context.html.replace(
+        //       /<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi,
+        //       '',
+        //     );
+        //     return context;
+        //   },
+        //   renderer: new Renderer({
+        //     // Optional - The name of the property to add to the window object with the contents of `inject`.
+        //     injectProperty: '__PRERENDER_INJECTED',
+        //     // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
+        //     inject: {
+        //       foo: 'bar',
+        //     },
+        //   }),
+        // }),
         new HtmlWebpackPlugin({
           filename: '../index.html',
           template: path.resolve(__dirname, 'src/html/index.html'),
