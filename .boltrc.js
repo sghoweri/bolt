@@ -4,6 +4,8 @@ const argv = require('yargs').argv;
 const deepmerge = require('deepmerge');
 const baseConfig = require('@bolt/starter-kit/.boltrc.js');
 
+// testing Netlify redeployment times
+
 const config = deepmerge(baseConfig, {
   // array of languages to compile the design system. note, these are ignored when the --i18n flag is set to false
   // Note: if lang is defined, the first item is currently the one used by default in the Pattern Lab build, pending further iterations on this!
