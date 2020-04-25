@@ -16,7 +16,7 @@ const { getConfig } = require('@bolt/build-utils/config-store');
 const { flattenArray } = require('@bolt/build-utils/general');
 const sizeOf = promisify(require('image-size'));
 const cacache = require('cacache');
-const cachePath = path.join(process.cwd(), './cache');
+const cachePath = path.join(process.cwd(), './.cache');
 const imagemin = require('imagemin');
 const imageminGifsicle = require('imagemin-gifsicle');
 let config;

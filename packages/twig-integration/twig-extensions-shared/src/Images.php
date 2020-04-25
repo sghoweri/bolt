@@ -32,7 +32,7 @@ class Images {
         // Removes all the files from ../cache that are more than 30 days
         // old. A verbose output will explain which files are deleted
 
-        GarbageCollect::dropOldFiles(getcwd() .'/cache', 30, true);
+        GarbageCollect::dropOldFiles(getcwd() .'/.cache', 30, true);
 
         //update lastrun.log with current time
         file_put_contents($lastRunLog, time());

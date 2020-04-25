@@ -665,7 +665,7 @@ async function createWebpackConfig(buildConfig) {
         info: {
           level: 'warn',
         },
-        cacheDirectory: path.join(process.cwd(), `./cache/webpack-legacy`),
+        cacheDirectory: path.join(process.cwd(), `./.cache/webpack-legacy`),
         // Clean up large, old caches automatically.
         cachePrune: {
           // Caches younger than `maxAge` are not considered for deletion. They must
@@ -683,7 +683,7 @@ async function createWebpackConfig(buildConfig) {
         info: {
           level: 'warn',
         },
-        cacheDirectory: path.join(process.cwd(), `./cache/webpack-modern`),
+        cacheDirectory: path.join(process.cwd(), `./.cache/webpack-modern`),
         // Clean up large, old caches automatically.
         cachePrune: {
           // Caches younger than `maxAge` are not considered for deletion. They must
