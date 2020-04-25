@@ -37,9 +37,7 @@
     "@bolt/micro-journeys": "^2.21.0",
     "@bolt/shadow-toggle": "^2.22.0",
     "@bolt/starter-kit": "^2.22.1",
-    "@bolt/theme-switcher": "^2.22.0"
-  },
-  "devDependencies": {
+    "@bolt/theme-switcher": "^2.22.0",
     "@ckeditor/ckeditor5-build-classic": "^12.1.0",
     "chalk-cli": "^4.1.0",
     "choices.js": "^7.0.0",
