@@ -56,7 +56,7 @@
     "deploy": "./scripts/deploy.js",
     "fix": "yarn lint:js --fix; yarn lint:scss --fix",
     "gds": "github-deploy-status -u boltdesignsystem -p bolt --token ${GITHUB_TOKEN}",
-    "postinstall": "yarn setup:php && patch-package && npx lerna run postbootstrap",
+    "postinstall": "yarn setup:php && npx lerna run postbootstrap",
     "jest": "jest --maxWorkers=3 --all --colors",
     "lint": "npm-run-all --parallel lint:*",
     "lint:js": "eslint '**/*.js' --ignore-pattern example-integrations",
