@@ -1,4 +1,4 @@
-import { render, stopServer, html } from '../../../testing/testing-helpers';
+import { render, stopServer, html } from '../../../../packages-extras/testing/testing-helpers';
 
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');

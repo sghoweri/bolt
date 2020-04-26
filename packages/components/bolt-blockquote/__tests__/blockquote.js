@@ -5,7 +5,7 @@ import {
   stopServer,
   html,
   vrtDefaultConfig as vrtConfig,
-} from '../../../testing/testing-helpers';
+} from '../../../../packages-extras/testing/testing-helpers';
 const os = require('os');
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');

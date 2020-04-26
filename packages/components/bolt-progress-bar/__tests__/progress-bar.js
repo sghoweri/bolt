@@ -5,7 +5,7 @@ import {
   stopServer,
   html,
   vrtDefaultConfig,
-} from '../../../testing/testing-helpers';
+} from '../../../../packages-extras/testing/testing-helpers';
 import schema from '../progress-bar.schema';
 const { valueFormat, animated } = schema.properties;
 const timeout = 90000;

@@ -2,7 +2,7 @@ import {
   render,
   renderString,
   stopServer,
-} from '../../../testing/testing-helpers';
+} from '../../../../packages-extras/testing/testing-helpers';
 
 describe('<bolt-ol> Component', () => {
   afterAll(async () => {

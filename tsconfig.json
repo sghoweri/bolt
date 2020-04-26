@@ -1,13 +1,13 @@
 {
   "include": [
     "packages",
-    "scripts"
+    "scripts", "packages-extras/servers", "packages-extras/testing", "packages-extras/generators"
   ],
   "exclude": [
     "dist",
     "www",
     "**/vendor/**",
-    "packages/generators/yeoman-create-component/generators/component",
+    "packages-extras/generators/yeoman-create-component/generators/component",
     "packages/components/bolt-icons/",
     "packages/components/bolt-icon",
     "packages/website-ui/uikit-workshop",

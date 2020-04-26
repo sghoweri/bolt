@@ -4,16 +4,13 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
 const TerserPlugin = require('terser-webpack-plugin');
 const NoEmitPlugin = require('no-emit-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const CriticalCssPlugin = require('critical-css-webpack-plugin');
+// const CriticalCssPlugin = require('critical-css-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const selectorImporter = require('node-sass-selector-importer');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
-const PrerenderSPAPlugin = require('@bolt/prerender-spa-plugin');
 const path = require('path');
-const Renderer = require('@bolt/uikit-prerenderer');
-// const puppeteer = require('puppeteer');
 const argv = require('yargs').argv;
 const merge = require('webpack-merge');
 const WebpackBar = require('webpackbar');
@@ -154,18 +151,18 @@ module.exports = function(apiConfig) {
       },
       module: {
         rules: [
-          {
-            test: /\.(ts|tsx)$/,
-            use: [
-              {
-                loader: 'ts-loader',
-                options: {
-                  transpileOnly: true,
-                  experimentalWatchApi: true,
-                },
-              },
-            ],
-          },
+          // {
+          //   test: /\.(ts|tsx)$/,
+          //   use: [
+          //     {
+          //       loader: 'ts-loader',
+          //       options: {
+          //         transpileOnly: true,
+          //         experimentalWatchApi: true,
+          //       },
+          //     },
+          //   ],
+          // },
           {
             test: /\.html$/,
             use: [

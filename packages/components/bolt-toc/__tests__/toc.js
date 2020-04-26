@@ -4,7 +4,7 @@ import {
   renderString,
   stopServer,
   html,
-} from '../../../testing/testing-helpers';
+} from '../../../../packages-extras/testing/testing-helpers';
 import schema from '../toc.schema';
 const { status, align } = schema.properties;
 const timeout = 120000;

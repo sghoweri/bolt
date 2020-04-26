@@ -3,7 +3,7 @@ import {
   stopServer,
   html,
   vrtDefaultConfig as vrtConfig,
-} from '../../../testing/testing-helpers';
+} from '../../../../packages-extras/testing/testing-helpers';
 import schema from '../accordion.schema';
 
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');

@@ -4,7 +4,7 @@ import {
   renderString,
   stopServer,
   html,
-} from '../../../testing/testing-helpers';
+} from '../../../../packages-extras/testing/testing-helpers';
 import schema from '../menu.schema';
 const { spacing, title } = schema.properties;
 const timeout = 120000;
