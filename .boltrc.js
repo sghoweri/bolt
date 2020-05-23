@@ -1,171 +1,91 @@
+/**
+ * Demo for testing out Bolt config updates that fall back to
+ * using https://github.com/davidtheclark/cosmiconfig if a .boltrc
+ * config file isn't already specified or initialized.
+ *
+ * This means that a .boltrc config in a parent folder would
+ * automatically get used if a more local one can't be found --
+ *
+ * For example, we can now use Webpack's vanilla CLI as-is!
+ *
+ * ```bash
+ *   cd packages/build-tools
+ *   npx webpack-cli --config="create-webpack-config.js" --progress
+ * ```
+ */
 const path = require('path');
+const globby = require('globby');
+const baseBoltDir = path.join(__dirname, './docs-site');
+const siteConfig = require(path.join(baseBoltDir, '.boltrc'));
 const resolve = require('resolve');
-const argv = require('yargs').argv;
-const deepmerge = require('deepmerge');
-const baseConfig = require('@bolt/starter-kit/.boltrc.js');
 
-// testing Netlify redeployment times
+// Paths that are relative to `baseBoltDir` must now be relative to this directory (i.e. `__dirname`)
+const adjustRelativePath = thePath =>
+  path.relative(__dirname, path.resolve(baseBoltDir, thePath));
 
-const config = deepmerge(baseConfig, {
-  // array of languages to compile the design system. note, these are ignored when the --i18n flag is set to false
-  // Note: if lang is defined, the first item is currently the one used by default in the Pattern Lab build, pending further iterations on this!
-  // lang: ['en', 'ja'],
+// Gather directories for any/all image fixtures and consolidate for the image resizing task
+const imageFixtureDirs = globby
+  .sync(
+    path.join(
+      __dirname,
+      './packages/components/**/fixtures/**/*.{jpg,jpeg,png,svg}',
+    ),
+  )
+  .map(file => path.dirname(file));
+const imageSets = [];
 
-  renderingService: false, // starts PHP service for rendering Twig templates
-  openServerAtStart: true,
-  // Environmental variable / preset to use
-  env: 'pwa',
-  compat: false,
+imageFixtureDirs.forEach(fixturePath => {
+  imageSets.push({
+    base: fixturePath,
+    glob: '*.{jpg,jpeg,png,svg}',
+    dist: path.join(adjustRelativePath(siteConfig.wwwDir), 'fixtures'),
+  });
+});
+
+const nonImageFixtures = globby.sync([
+  './packages/components/**/fixtures/**/*',
+  '!./packages/components/**/fixtures/**/*.{jpg,jpeg,png}',
+  './packages/components/**/fixtures/videos/**/*',
+]);
+const itemsToCopy = [];
+
+nonImageFixtures.forEach(fixturePath => {
+  itemsToCopy.push({
+    from: path.join(__dirname, fixturePath),
+    to: path.join(
+      __dirname,
+      adjustRelativePath(siteConfig.wwwDir),
+      'fixtures/videos',
+    ),
+    flatten: true,
+  });
+});
+
+module.exports = {
   esModules: true,
-  srcDir: './docs-site/src/pages',
-  buildDir: './www/build',
-  dataDir: './www/build/data',
+  compat: false, // Jest tests only run w/ ES Modules so this should speed things up
+  wwwDir: adjustRelativePath(siteConfig.wwwDir),
+  buildDir: adjustRelativePath(siteConfig.buildDir),
   iconDir: [],
-  wwwDir: './www',
-  startPath: '/',
-  plConfigFile: './config/config.yml',
-  verbosity: 2,
-  schemaErrorReporting: 'cli',
-  webpackDevServer: {
-    enabled: true,
-  },
-  sourceMaps: !(process.env.TRAVIS || argv.prod),
-  enableCache: true,
-  enableSSR: false, // temp disabled till Travis issue fixed
-  extraTwigNamespaces: {
-    bolt: {
-      recursive: true,
-      paths: ['docs-site/src/templates', './packages/components'],
-    },
-    'bolt-blueprints': {
-      recursive: true,
-      paths: ['./docs-site/src/pages/pattern-lab/_patterns/03-blueprints'],
-    },
-    pl: {
-      recursive: true,
-      paths: [
-        './docs-site/src/pages/pattern-lab',
-        /* Example of including additional component paths to include in the main @bolt namespace */
-        // path.relative(process.cwd(), path.dirname(require.resolve('@bolt/components-sticky/package.json'))),
-      ],
-    },
-    utils: {
-      recursive: true,
-      paths: ['./docs-site/src/components/pattern-lab-utils'],
-    },
-    'bolt-site': {
-      recursive: true,
-      paths: ['./docs-site/src/templates', './docs-site/src/components'],
-    },
-  },
-  images: {
-    sets: [
-      {
-        base: './docs-site/src/assets/images',
-        glob: '**',
-        dist: './www/images',
-      },
-      {
-        base:
-          './docs-site/src/pages/pattern-lab/_patterns/03-blueprints/00-assets/images',
-        glob: '**',
-        dist: './www/images',
-      },
-    ],
-  },
-
-  // Currently only supports a 'scss' key with an array of Sass partials to pull in.
-  globalData: {
-    scss: [
-      // './src/test-overrides.scss' // example of including an additional Sass partial to set / redefine additional default values, globally.
-    ],
-    js: [
-      // './src/global-data.js', // example of including a JS files with a default export to globally include extra data to all Bolt JS components
-    ],
-  },
-
   components: {
     global: [
-      /* IMPORTANT: Do NOT list components here that are intended to be used
-       * outside of the docs site-- those should instead be pulled in through
-       * baseConfig.  Use this only for internal components.
-       */
-
-      // helper components that are only used internally
-
-      // @todo: look into removing these three lines once the lazy queue-related perf updates get in
-      '@bolt/analytics-autolink', // why isn't this in @bolt/starter-kit?!
-      '@bolt/analytics-autotrack',
-      '@bolt/blueprints',
-
-      '@bolt/components-radio-switch',
-      '@bolt/components-page-footer',
-      '@bolt/components-page-header',
-      '@bolt/docs-search',
-      // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
-      '@bolt/shadow-toggle',
-      '@bolt/theme-switcher',
-
-      // Components that are excluded from the base release build.
-      '@bolt/components-search-filter',
-      '@bolt/micro-journeys',
-
-      /**
-       * note: resolving these paths isn't typically required when
-       * the .boltrc config is run through the bolt CLI tool (ie.
-       * normal, default usage).
-       *
-       * Resolving these IS sometimes needed however when running
-       * a build task completely on it's own (ex. running
-       * webpack-cli directly using Bolt's webpack config)
-       */
-      // Keeping PL specific assets here so we can remove an extra JS + CSS request from the site
-      resolve.sync('./docs-site/src/index.scss'),
-      resolve.sync('./docs-site/src/index.js'),
+      ...siteConfig.components.global,
     ],
-    individual: [],
   },
-  copy: [
-    {
-      from: require.resolve(`@bolt/critical-path-polyfills`),
-      to: path.join(__dirname, './www/build'),
-    },
-    {
-      from: path.join(
-        path.dirname(require.resolve(`@bolt/components-typeahead`)),
-        '__demos__/typeahead.data.json',
-      ),
-      to: path.join(__dirname, './www/build/data'),
-    },
-    {
-      from: `./docs-site/src/assets/bolt-sketch.zip`,
-      to: path.join(__dirname, './www/assets'),
-      flatten: true,
-    },
-    {
-      from: `docs-site/src/assets/videos`,
-      to: path.join(__dirname, './www/videos'),
-      flatten: true,
-    },
-    {
-      from: `${path.dirname(
-        resolve.sync('@bolt/global/package.json'),
-      )}/favicons/bolt`,
-      to: path.join(__dirname, './www/'),
-      flatten: true,
-    },
-  ],
+  images: {
+    sets: imageSets,
+  },
+  prod: true,
+  sourceMaps: false,
+  enableCache: true,
+  verbosity: 1,
+  copy: [...itemsToCopy],
   alterTwigEnv: [
     {
       file: `${path.dirname(
         resolve.sync('@bolt/twig-renderer/package.json'),
       )}/SetupTwigRenderer.php`,
-      functions: ['addBoltCoreExtensions', 'addBoltExtraExtensions'],
+      functions: ['addBoltCoreExtensions'],
     },
   ],
-});
-
-// removing here first before removing from @bolt/starter-kit directly
-delete config.components.individual;
-
-module.exports = config;
+};
